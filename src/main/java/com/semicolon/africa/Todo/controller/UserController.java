@@ -5,9 +5,11 @@ import com.semicolon.africa.Todo.dtos.requests.LoginRequest;
 import com.semicolon.africa.Todo.dtos.requests.RegisterRequest;
 import com.semicolon.africa.Todo.dtos.responses.*;
 import com.semicolon.africa.Todo.exceptions.InvalidDetailsException;
+import com.semicolon.africa.Todo.exceptions.MethodArgumentException;
 import com.semicolon.africa.Todo.exceptions.TaskException;
 import com.semicolon.africa.Todo.exceptions.UserExistException;
 import com.semicolon.africa.Todo.services.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +21,7 @@ public class UserController {
     private  UserService userService;
 
     @PostMapping("register")
-    public ResponseEntity<?> register(@RequestBody RegisterRequest registerRequest){
+    public ResponseEntity<?> register(@RequestBody @Valid RegisterRequest registerRequest){
      RegisterResponse registerResponse = new RegisterResponse();
      try {
         userService.register(registerRequest);
@@ -33,7 +35,7 @@ public class UserController {
     }
 
     @PostMapping("login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest){
+    public ResponseEntity<?> login(@RequestBody @Valid LoginRequest loginRequest){
         LoginResponse loginResponse = new LoginResponse();
         try {
             userService.login(loginRequest);
@@ -99,6 +101,7 @@ public class UserController {
             return new ResponseEntity<>(new ApiResponse(false, deleteTaskResponse), HttpStatus.NOT_FOUND);
         }
     }
+
 
 
 

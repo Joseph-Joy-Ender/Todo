@@ -4,6 +4,7 @@ import com.semicolon.africa.Todo.data.repositories.UserRepository;
 import com.semicolon.africa.Todo.dtos.requests.AddTaskRequest;
 import com.semicolon.africa.Todo.dtos.requests.LoginRequest;
 import com.semicolon.africa.Todo.dtos.requests.RegisterRequest;
+import com.semicolon.africa.Todo.dtos.requests.UpdateRequest;
 import com.semicolon.africa.Todo.exceptions.InvalidDetailsException;
 import com.semicolon.africa.Todo.exceptions.UserExistException;
 import org.junit.jupiter.api.AfterEach;
@@ -157,6 +158,7 @@ class UserServiceImplTest {
         RegisterRequest request = new RegisterRequest();
         LoginRequest loginRequest = new LoginRequest();
         AddTaskRequest taskRequest = new AddTaskRequest();
+        UpdateRequest updateRequest = new UpdateRequest();
         request.setPassword("Ender20");
         request.setUsername("Joseph");
         userService.register(request);
@@ -171,8 +173,14 @@ class UserServiceImplTest {
         taskRequest.setUsername("Joseph");
         userService.addTask(taskRequest);
 
-        userService.updateTask("1", "overTired", "sick");
-        
+        updateRequest.setNewTittle("super tired");
+        updateRequest.setOldTittle("tired");
+        updateRequest.setUsername("Joseph");
+        updateRequest.setMessage("in love with the wrong person");
+
+       assertEquals("super tired", userService.updateTask(updateRequest).getTitle());
+
+
     }
 
 
