@@ -5,7 +5,6 @@ import com.semicolon.africa.Todo.dtos.requests.LoginRequest;
 import com.semicolon.africa.Todo.dtos.requests.RegisterRequest;
 import com.semicolon.africa.Todo.dtos.responses.*;
 import com.semicolon.africa.Todo.exceptions.InvalidDetailsException;
-import com.semicolon.africa.Todo.exceptions.MethodArgumentException;
 import com.semicolon.africa.Todo.exceptions.TaskException;
 import com.semicolon.africa.Todo.exceptions.UserExistException;
 import com.semicolon.africa.Todo.services.UserService;
